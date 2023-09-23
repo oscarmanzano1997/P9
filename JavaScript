@@ -1,0 +1,18 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const modeToggle = document.getElementById('modeToggle');
+
+    modeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    });
+
+    // Check local storage for user's preference
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (userPrefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        modeToggle.checked = true;
+    }
+});
